@@ -21,6 +21,10 @@ class Login extends React.Component {
         })
     }
 
+    showLoginInfo = (e) => {
+        console.log(`{id: ${this.state.id} pw: ${this.state.pw}}`)
+    }
+
     showPassword = () => {
         this.setState({ hiddenPw:!this.state.hiddenPw })
     }
@@ -38,7 +42,7 @@ class Login extends React.Component {
                             <input id="pw" onChange={this.handleLoginInfo} value={this.state.pw} type={this.state.hiddenPw ? "password" : "text"} placeholder="비밀번호" />
                             <span className="showPw" onClick={this.showPassword}>{this.state.hiddenPw ? "show" : "hide"}</span>
                         </div>
-                        <button id="loginBtn" disabled={(this.state.id.trim().includes('@')) && (this.state.pw.trim().length >= 5) ? false : true}><Link to="/main-seunghwan">로그인</Link></button>
+                        <button id="loginBtn" onClick={this.showLoginInfo} disabled={(this.state.id.trim().includes('@')) && (this.state.pw.trim().length >= 5) ? false : true}><Link to="/main-seunghwan">로그인</Link></button>
                     </div>
                 </div>
             </div>
