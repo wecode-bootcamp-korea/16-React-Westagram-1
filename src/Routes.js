@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import LoginTaeHyung from './Pages/taehyungkim/Login/Login';
 import MainTaeHyung from './Pages/taehyungkim/Main/Main';
