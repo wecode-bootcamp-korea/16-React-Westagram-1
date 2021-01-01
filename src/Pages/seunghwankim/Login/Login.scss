@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap");
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -6,51 +6,128 @@
 */
 
 * {
-	box-sizing: border-box;
-	font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, canvas, details, embed, 
-figure, figcaption, hgroup, input,
-menu, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+hgroup,
+input,
+menu,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, details, figcaption, figure, 
-footer, header, hgroup, menu, section {
-	display: block;
+article,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+section {
+    display: block;
 }
 body {
-	line-height: 1;
+    line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+    list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+    quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 //
@@ -144,7 +221,7 @@ body,
                 cursor: pointer;
             }
         }
-        button {
+        a {
             width: 100%;
             height: 30px;
             margin: 8px 0;
@@ -152,19 +229,14 @@ body,
             border-radius: 3px;
             background-color: #0095f6;
             text-align: center;
-            cursor: pointer;
-            &:focus {
-                outline: none;
-            }
-            &:disabled {
-                opacity: 0.3;
+            line-height: 30px;
+            color: #fafafa;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            &.disable {
+                background-color: rgba($color: #0095f6, $alpha: 0.3);
                 cursor: default;
-            }
-            a {
-                color: #fafafa;
-                text-decoration: none;
-                font-size: 14px;
-                font-weight: 600;
             }
         }
     }
