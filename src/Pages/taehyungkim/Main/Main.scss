@@ -1,0 +1,620 @@
+// @import '../../styles/common.scss';
+
+// reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  list-style: none;
+}
+
+// common
+$gray0 : #fafafa;
+$gray1 : #e4e4e4;
+$gray2 : #b4b4b4;
+$gray3 : #8e8e8e;
+$active-sky : #0096F6;
+
+$main-width : 935px;
+
+$a3e : all .3s ease; 
+
+%flexBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+%flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%flexAlign {
+  display: flex;
+  align-items: center;
+}
+
+%upArrow {
+  width: 0px;
+  height: 0px;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 10px solid #ffffff;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background: $gray0;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+}
+
+
+.Main {
+  width: $main-width;
+  margin: 0 auto;
+  font-size: 14px;
+// Navigation Bar
+  .nav-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #ffffff;
+    border-bottom: 1.5px solid $gray1;
+    width: 100%;
+    .nav-container {
+      @extend %flexBetween;
+      width: $main-width;
+      margin: 0 auto;
+      padding: 10px 0;
+      .nav-title {
+        @extend %flexBetween;
+        img {
+          width: 25px;
+          height: 25px;
+          object-fit: cover;
+        }
+        .nav-title-midbar {
+          width: 1px;
+          height: 25px;
+          margin: auto 15px;
+          background: #000000;
+        }
+        p {
+          font-family: 'Lobster', cursive;
+          text-transform: capitalize;
+          a {
+            text-decoration: none;
+            font-size: 24px;
+            color: #000000;
+            &.focus {
+              color: $gray3;
+            }
+          }
+        }
+      }
+      .nav-search {
+        position: relative;
+        width: 200px;
+        height: 28px;
+        cursor: text;
+        input {
+          width: 100%;
+          padding: 3px 10px 3px 26px;
+          border: 1.5px solid $gray2;
+          border-radius: 5px;
+          background: $gray0;
+          &::placeholder {
+            visibility: hidden;
+          }
+        }
+        .nav-search-placeholder {
+          @extend %flexCenter;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          color: $gray2;
+          * {
+            margin: auto 3px;
+          }
+        }
+        .nav-search-end {
+          @extend %flexCenter;
+          position: absolute;
+          height: 100%;
+          top: -1px;
+          right: 5px;
+          visibility: hidden;
+          button {
+            color: $gray2;
+          }
+        }
+        &.focus {
+          .nav-search-input::placeholder {
+            visibility: visible;
+            color: $gray2;
+          }
+          .nav-search-placeholder {
+            left: 5px;
+            width: initial;
+            span {
+              display: none;
+            }
+          }
+          .nav-search-end {
+            visibility: visible;
+          }
+        }
+        .search-id-container {
+          position: absolute;
+          left: -20px;
+          top: 28px;
+          width: 240px;
+          height: 250px;
+          background: #ffffff;
+          box-shadow: 1px 1px 5px 1px $gray1;
+          overflow: scroll;
+          visibility: hidden;
+          opacity: 0;
+          transition: $a3e;
+          &::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: -10px;
+            @extend %upArrow;
+            transform: translateX(-50%);
+          }
+          &.show {
+            visibility: visible;
+            opacity: 1;
+            z-index: 50;
+          }
+          .search-id {
+            @extend %flexBetween;
+            width: 100%;
+            height: 60px;
+            padding: 15px;
+            border-bottom: 1px solid $gray1;
+            .search-id-desc {   
+              margin-top: 3px;
+              color: $gray3;
+            }
+            button {
+              color: $active-sky;
+            }
+          }
+        }
+      }
+      .nav-menus {
+        @extend %flexBetween;
+        padding: 0;
+        .nav-menu {
+          position: relative;
+          width: 24px;
+          margin-left: 20px;
+          cursor: pointer;
+          &:first-child {
+            margin-left: 0;
+          }
+          .nav-menu-icon {
+            width: 100%;
+          }
+          &.new::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -5px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #ED4955;
+            transform: translateX(-50%);
+          }
+        }
+        .profile {
+          &::after {
+            content: '';
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            left: -4px;
+            top: -3px;
+            border: 1px solid #262626;
+            border-radius: 10px;
+            visibility: hidden;
+            opacity: 0;
+          }
+          .nav-submenu-profile {
+            position: absolute;
+            right: -24px;
+            bottom: -210px;
+            width: 230px;
+            background: #ffffff;
+            box-shadow: 1px 1px 5px 1px $gray1;
+            border-radius: 5px;
+            visibility: hidden;
+            opacity: 0;
+            transition: $a3e;
+            &::before {
+              position: absolute;
+              content: '';
+              right: 21px;
+              top: -10px;
+              @extend %upArrow;
+            }
+            ul {
+              padding: 0;
+              li {
+                @extend %flexAlign;
+                width: 100%;
+                height: 37px;
+                padding: 20px;
+                cursor: pointer;
+                span {
+                  margin-left: 15px;
+                }
+                &:hover {
+                  background: $gray0;
+                }
+                &:last-child {
+                  border-top: 1px solid $gray1;
+                }
+              }
+            }
+          }
+          &.show {
+            &::after {
+              visibility: visible;
+              opacity: 1;
+            }
+            .nav-submenu-profile {
+              visibility: visible;
+              opacity: 1;
+              z-index: 100;
+            }
+          }
+        }
+      }
+    }
+  }
+
+// Main
+  .main-container {
+    display: flex;
+    height: 85%;
+    margin-top: 60px;
+
+  // Feeds(left)
+    .feeds {
+      flex: 2;
+      margin-right: 20px;
+      .feed {
+        margin-bottom: 30px;
+        border: 1.5px solid $gray1;
+        header {
+          @extend %flexBetween;
+          padding: 10px 15px;
+          div {
+            @extend %flexCenter;
+            img {
+              width: 40px;
+              height: 40px;
+              margin-right: 10px;
+              border-radius: 50%;
+              border: 1px solid $gray1;
+              object-fit: cover;
+            }
+          }
+          button {
+            font-size: 20px;
+            color: #373737;
+          }
+        }
+        img {
+          width: 100%;
+          height: 630px;
+          object-fit: cover;
+        }
+        footer {
+          padding: 10px 15px;
+          .btn-container {
+            @extend %flexBetween;
+            margin-bottom: 5px;
+            .btn-container-left {
+              button {
+                margin-left: 15px;
+              }
+              .btn-container-like {
+                margin-left: 0;
+                .like-false {display: block;}
+                .like-true {display: none;}
+                &.like {
+                  .like-false {display: none;}
+                  .like-true {display: block;}
+                }
+              }
+            }
+          }
+          .like-counter {
+            @extend %flexAlign;
+            img {
+              width: 20px;
+              height: 20px;
+              margin-right: 5px;
+              border: 1px solid $gray1;
+              border-radius: 50%;
+              object-fit: cover;
+            }
+          }
+          .comment-container {
+            .my-comment {
+              margin-top: 10px;
+              .my-comment-more {
+                color: $gray3;
+                cursor: pointer;
+              }
+            }
+            .follower-comment-container {
+              margin-top: 10px;
+              .follower-comment-content {
+                @extend %flexBetween;
+                margin-top: 5px;
+                button {
+                  .like-false {display: block;}
+                  .like-true {display: none;}
+                  &.like {
+                    .like-false {display: none;}
+                    .like-true {display: block;}
+                  }
+                }
+              }
+            }
+            strong {
+              margin-right: 7px;
+            }
+          }
+          .time-content {
+            margin-top: 7px;
+            color: $gray3;
+            font-size: 12px;
+          }
+        }
+        form {
+          @extend %flexAlign;
+          position: relative;
+          width: 100%;
+          input {
+            width: 100%;
+            padding: 15px 0 15px 15px;
+            border-top: 1.5px solid $gray1;
+            background: transparent;
+            outline: none;
+          }
+          button {
+            width: 55px;
+            padding: 15px 15px 15px 0;
+            border-top: 1.5px solid $gray1;
+            color: #C5E1FB;
+            &.active {
+              color: $active-sky;
+            }
+          }
+        }
+      }
+    }
+
+  // Aside(right)
+    .main-right {
+      flex: 1;
+      .wecode-container {
+        @extend %flexAlign;
+        margin-bottom: 20px;
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          margin-right: 10px;
+          object-fit: cover;
+        }
+        .wecode-content {
+          p {
+            color: $gray3;
+            font-weight: 600;
+          }
+        }
+      }
+      .story-container {
+        width: 100%;
+        height: 240px;
+        padding: 15px;
+        margin: 15px 0;
+        border: 1.5px solid $gray1;
+        background: #ffffff;
+        overflow: scroll;
+        .story-title {
+          @extend %flexBetween;
+          p {color: $gray3;}
+        }
+        .story-contents {
+          .story {
+            @extend %flexAlign;
+            margin: 15px 0;
+            img {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              margin-right: 10px;
+              object-fit: cover;
+            }
+            div {
+              p {color: $gray3;}
+            }
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+      .recommend-container {
+        width: 100%;
+        padding: 15px;
+        margin: 15px 0;
+        border: 1.5px solid $gray1;
+        background: #ffffff;
+        .recommend-title {
+          @extend %flexBetween;
+          p {color: $gray3;}
+        }
+        .recommend-contents {
+          .recommend {
+            @extend %flexBetween;
+            margin: 15px 0;
+            .recommend-left {
+              @extend %flexAlign;
+              img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 10px;
+                object-fit: cover;
+              }
+              div {
+                p {color: $gray3;}
+              }
+            }
+            button {color: $active-sky;}
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+      .right-container {
+        color: $gray3;
+      }
+    }
+  }
+}
+
+
+/* 9. [추가구현] Responsive Web  */
+
+/* 1000px(small monitor, tablet) */
+// @media (max-width: 1000px) {
+//   .Main {
+//     width: 90%;
+//   }
+
+//   .nav-container {
+//     width: 90%;
+//   }
+
+//   .nav-search {
+//     width: 160px;
+//   }
+
+//   .search-id-container {
+//     width: 200px;
+//     height: 200px;
+//   }
+
+//   .search-id {
+//     padding: 10px;
+//     height: 50px;
+//   }
+
+//   .nav-submenu-profile {
+//     width: 180px;
+//   }
+
+//   .nav-submenu-profile li {
+//     height: 24px;
+//   }
+
+//   .feeds {
+//     margin-right: 0;
+//   }
+  
+//   .main-right {
+//     display: none;
+//   }
+// }
+
+// /* 550px(phone) */
+// @media (max-width: 550px) {
+//   .Main {
+//     font-size: 12px;
+//   }
+
+//   .text-logo a {
+//     font-size: 20px;
+//   }
+
+//   .logo, .nav-title-midbar {
+//     display: none;
+//   }
+
+//   .nav-menus > li {
+//     margin-left: 15px;
+//     width: 20px;
+//   }
+
+//   .nav-menu-profile::after {
+//     width: 26px;
+//     height: 26px;
+//   }
+
+//   .main-container {
+//     margin-top: 65px;
+//   }
+
+//   .feed-profile-img {
+//     width: 30px;
+//     height: 30px;
+//   }
+
+//   .feed-main-img {
+//     height: 450px;
+//   }
+
+//   .btn-container svg {
+//     width: 18px;
+//     height: 18px;
+//   }
+
+//   .my-comment {
+//     margin-top: 5px;
+//   }
+
+//   .follower-comment-content {
+//     margin-top: 3px;
+//   }
+
+//   .follower-comment-like svg {
+//     width: 10px;
+//     height: 10px;
+//   }
+
+//   .time-content {
+//     margin-top: 4px;
+//   }
+
+//   .comment-form-input, .comment-form-btn {
+//     padding-top: 10px;
+//     padding-bottom: 10px;
+//   }
+// }
