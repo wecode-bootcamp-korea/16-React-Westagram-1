@@ -1,8 +1,40 @@
-import './Main.scss';
-// import '../../reset.scss';
 import React from 'react';
+import './Main.scss';
+import Comment from './Components/Comment'
+// import '../../reset.scss';
 
 class Main extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            commentInputValue:'',
+            commentList: []
+        }
+    }
+    
+    handleCommentInput = (e) => {
+        this.setState({
+            commentInputValue: e.target.value
+        })
+    }
+
+    handleCommentEnrollBtn = () => {
+        this.setState({
+            commentList: this.state.commentList.concat(this.state.commentInputValue.trim()),
+            commentInputValue: ''
+        })
+    }
+
+    commentValid = () => {
+        return this.state.commentInputValue.trim() === ''
+    }
+
+    commentEnrollByEnterKey = (e) => {
+        if((e.key === 'Enter')&&(!this.commentValid())) {
+            this.handleCommentEnrollBtn();
+        }
+    }
+    
     render() {
         return (
             <div className="Main">
@@ -37,7 +69,7 @@ class Main extends React.Component {
                             <div className="story">
                                 <div className="story_block">
                                     <div className="story_img">
-                                        <img src="https://scontent-xsp1-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-xsp1-2.cdninstagram.com&_nc_ohc=FbyWMPXOjYgAX8RM9LH&oh=06e5342744e5ff4803fd3bb789f6ecfd&oe=600CD80F&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2" alt="story img"/>
+                                        <img src="https://scontent-xsp1-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-xsp1-2.cdninstagram.com&_nc_ohc=FbyWMPXOjYgAX8RM9LH&oh=06e5342744e5ff4803fd3bb789f6ecfd&oe=600CD80F&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2" alt="story img" />
                                     </div>
                                     <div className="story_name">member1</div>
                                 </div>
@@ -45,7 +77,7 @@ class Main extends React.Component {
                             <article>
                                 <header>
                                     <div className="header_img">
-                                        <img src="https://scontent-xsp1-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-xsp1-2.cdninstagram.com&_nc_ohc=FbyWMPXOjYgAX8RM9LH&oh=06e5342744e5ff4803fd3bb789f6ecfd&oe=600CD80F&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2" alt="header img"/>
+                                        <img src="https://scontent-xsp1-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-xsp1-2.cdninstagram.com&_nc_ohc=FbyWMPXOjYgAX8RM9LH&oh=06e5342744e5ff4803fd3bb789f6ecfd&oe=600CD80F&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2" alt="header img" />
                                     </div>
                                     <div className="header_name">1k3h_sh</div>
                                 </header>
@@ -64,27 +96,12 @@ class Main extends React.Component {
                                         <span>이건 참DOM</span>
                                     </div>
                                     <div className="see_all_comments">댓글 모두 보기</div>
-                                    <div className="comments">
-                                        <div className="comment_line_container">
-                                            <span>1k3h_sh</span>
-                                            <span>대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글
-                                            대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충
-                                            길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고
-                                            의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고
-                                            의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고
-                                            의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고
-                                            의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고
-                                            의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고
-                                            의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고
-                                            의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 대충 길고
-                                            의미없는 글 대충 길고 의미없는 글 대충 길고 의미없는 글 </span>
-                                        </div>
-                                    </div>
+                                    <Comment commentList={this.state.commentList}/>
                                     <div className="day">2020-07-30</div>
                                     <div className="comment_input_box">
-                                        <input id="commentInput" placeholder="댓글 달기..." />
+                                        <input id="commentInput" onChange={this.handleCommentInput} onKeyDown={this.commentEnrollByEnterKey} value={this.state.commentInputValue} placeholder="댓글 달기..." />
                                         <div className="enroll_btn_block">
-                                            <button id="commentEnrollBtn" className="enroll_btn">게시</button>
+                                            <button id="commentEnrollBtn" onClick={this.handleCommentEnrollBtn} disabled={this.commentValid() ? true : false}>게시</button>
                                         </div>
                                     </div>
                                 </div>

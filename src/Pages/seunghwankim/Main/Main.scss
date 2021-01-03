@@ -291,10 +291,10 @@ button {
                             color: #8e8e8e;
                             font-size: 14px;
                         }
-                        .comments {
+                        .comments_container {
                             width: 100%;
                             padding: 0 16px;
-                            .comment_line_container {
+                            .Comment {
                                 width: 100%;
                                 margin-bottom: 4px;
                                 & > span:nth-child(1) {
@@ -338,7 +338,7 @@ button {
                                 justify-content: center;
                                 width: 28px;
                                 height: 100%;
-                                .enroll_btn {
+                                #commentEnrollBtn {
                                     display: flex;
                                     align-items: center;
                                     width: 26px;

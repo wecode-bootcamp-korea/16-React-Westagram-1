@@ -9,9 +9,7 @@ class Login extends React.Component {
         this.state = {
             id: '',
             pw: '',
-            hiddenPw: true,
-            // cond: 'able'
-            // btnDisabled: true
+            hiddenPw: true
         };
     }
 
