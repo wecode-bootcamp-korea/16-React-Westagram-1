@@ -1,17 +1,24 @@
 import React from 'react';
-import './Main.scss';
 import Comment from './Components/Comment'
+import COMMENT from './data'
+import './Main.scss';
 // import '../../reset.scss';
 
 class Main extends React.Component {
     constructor() {
         super();
         this.state = {
-            commentInputValue:'',
+            commentInputValue: '',
             commentList: []
         }
     }
-    
+
+    componentDidMount() {
+        this.setState({
+            commentList: COMMENT
+        })
+    }
+
     handleCommentInput = (e) => {
         this.setState({
             commentInputValue: e.target.value
@@ -19,8 +26,12 @@ class Main extends React.Component {
     }
 
     handleCommentEnrollBtn = () => {
+        const { commentInputValue, commentList } = this.state;
         this.setState({
-            commentList: this.state.commentList.concat(this.state.commentInputValue.trim()),
+            commentList: [...commentList, {
+                id: commentList.length + 1,
+                content: commentInputValue
+            }],
             commentInputValue: ''
         })
     }
@@ -30,11 +41,11 @@ class Main extends React.Component {
     }
 
     commentEnrollByEnterKey = (e) => {
-        if((e.key === 'Enter')&&(!this.commentValid())) {
+        if ((e.key === 'Enter') && (!this.commentValid())) {
             this.handleCommentEnrollBtn();
         }
     }
-    
+
     render() {
         return (
             <div className="Main">
@@ -96,12 +107,16 @@ class Main extends React.Component {
                                         <span>이건 참DOM</span>
                                     </div>
                                     <div className="see_all_comments">댓글 모두 보기</div>
-                                    <Comment commentList={this.state.commentList}/>
+                                    <div className="comments_container">
+                                        {this.state.commentList.map((comment) => {
+                                            return <Comment key={comment.id} content={comment.content} />
+                                        })}
+                                    </div>
                                     <div className="day">2020-07-30</div>
                                     <div className="comment_input_box">
                                         <input id="commentInput" onChange={this.handleCommentInput} onKeyDown={this.commentEnrollByEnterKey} value={this.state.commentInputValue} placeholder="댓글 달기..." />
                                         <div className="enroll_btn_block">
-                                            <button id="commentEnrollBtn" onClick={this.handleCommentEnrollBtn} disabled={this.commentValid() ? true : false}>게시</button>
+                                            <button id="commentEnrollBtn" onClick={this.handleCommentEnrollBtn} disabled={this.commentValid()}>게시</button>
                                         </div>
                                     </div>
                                 </div>

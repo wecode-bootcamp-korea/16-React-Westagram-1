@@ -85,8 +85,7 @@ button {
     nav {
         position: fixed;
         top: 0;
-        display: flex;
-        flex-direction: row;
+        display: flex; 
         justify-content: center;
         width: 100%;
         height: 54px;
@@ -94,7 +93,6 @@ button {
         background-color: rgb(255, 255, 255);
         .nav_content {
             display: flex;
-            flex-direction: row;
             width: 975px;
             max-width: 975px;
             height: 100%;
@@ -147,7 +145,6 @@ button {
     }
     main {
         display: flex;
-        flex-direction: row;
         justify-content: center;
         width: 100%;
         height: 100%;
@@ -155,7 +152,6 @@ button {
         background-color: #fafafa;
         .main_content_container {
             display: flex;
-            flex-direction: row;
             width: 935px;
             max-width: 935px;
             height: 100%;
@@ -206,7 +202,6 @@ button {
                     background-color: rgb(255, 255, 255);
                     header {
                         display: flex;
-                        flex-direction: row;
                         align-items: center;
                         width: 100%;
                         height: 59px;
@@ -240,7 +235,6 @@ button {
                         width: 100%;
                         .icon_container {
                             display: flex;
-                            flex-direction: row;
                             justify-content: space-between;
                             align-items: center;
                             width: 100%;
@@ -305,6 +299,7 @@ button {
                                     font-weight: 600;
                                 }
                                 & > span:nth-child(2) {
+                                    word-wrap: break-word;
                                     color: #262626;
                                     font-size: 14px;
                                 }
@@ -321,7 +316,6 @@ button {
                         }
                         .comment_input_box {
                             display: flex;
-                            flex-direction: row;
                             width: 100%;
                             height: 56px;
                             padding: 0 16px;
@@ -370,7 +364,6 @@ button {
                 height: 500px;
                 .my_profile {
                     display: flex;
-                    flex-direction: row;
                     width: 100%;
                     height: 56px;
                     margin-top: 18px;
@@ -449,7 +442,6 @@ button {
                         padding: 8px 0;
                         .member_block {
                             display: flex;
-                            flex-direction: row;
                             width: 100%;
                             height: 48px;
                             padding: 8px 0;
