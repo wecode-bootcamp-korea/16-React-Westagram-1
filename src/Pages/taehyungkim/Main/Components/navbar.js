@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 import { navSubSVG } from '../../data/config'
 
 class Navbar extends Component {
+  
+  toggleSearch = () => {
+    const navSearch = document.querySelector('.nav-search');
+    if (navSearch.classList.contains('focus')) {
+      navSearch.classList.remove('focus')
+      this.idInput.blur();
+    }
+    else {
+      navSearch.classList.add('focus')
+      this.idInput.focus();
+    }
+  }
+
   render() {
     return (
       <nav className="nav-bar">
@@ -12,11 +25,11 @@ class Navbar extends Component {
             <p 
               onMouseDown={(e) => {e.target.className = `text-logo focus`}}
               onMouseOut={(e) => {e.target.className = `text-logo`}}>
-              <a href="/">Instagram</a>
+              <a href="/main-taehyung">Instagram</a>
             </p>
           </div>
-          <div className="nav-search" onClick={(e) => document.querySelector('.nav-search').classList.toggle('focus')}>
-            <input type="text" placeholder="검색...." />
+          <div className="nav-search" onClick={this.toggleSearch}>
+            <input type="text" placeholder="검색...." ref={(input) => {this.idInput = input}}/>
             <div className="nav-search-placeholder" >
               <i className="fas fa-search"></i><span className="placeholder">검색</span>
             </div>

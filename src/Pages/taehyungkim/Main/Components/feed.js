@@ -57,7 +57,7 @@ class Feed extends Component {
         <footer>
           <div className="btn-container">
             <div className="btn-container-left">
-              <button className="btn-container-like" key="btn-container-like" onClick={(e) => document.querySelector('.btn-container-like').classList.toggle('like')}>
+              <button className="btn-container-like" key="btn-container-like" onClick={(e) => e.target.parentNode.classList.toggle('like')}>
                 {btnConSVG[0]}
               </button>
               <button className="btn-container-comment" key="btn-container-comment">
