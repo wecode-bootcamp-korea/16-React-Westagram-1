@@ -2,41 +2,29 @@ import React, { Component } from 'react';
 import { myData, feedData } from '../data/data'
 import './Main.scss'
 import Navbar from './Components/navbar'
-import Feeds from './Components/feeds'
+import Feed from './Components/feed'
 import Aside from './Components/aside'
 
 class MainTaeHyung extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputVal : '',
-      commentList : feedData[0].follower,
+      feedList : [],
     }
   }
 
-  updateComment = (e) => {
+  componentDidMount() {
     this.setState({
-      inputVal: e.target.value
+      feedList: feedData
     })
   }
 
-  addComment = (e) => {
-    e.preventDefault();
-    const newArr = this.state.commentList;
-    const newCom = {id: newArr.length + 1, name: myData.name, comment: this.state.inputVal, like: false};
-    newArr.push(newCom);
-    this.setState({
-      inputVal: '',
-      commentList: newArr
+  updateList(id, list) {
+    const newList = this.state.feedList.map(ele => {
+      return (ele.id === id) ? {...ele, follower: list} : ele
     })
-  }
-
-  toggleCommentLike = (targetId) => {
-    const newList = this.state.commentList.map(comment => 
-      (comment.id === targetId) ? {...comment, like: !comment.like} : {...comment}
-    )
     this.setState({
-      commentList: newList
+      feedList: newList
     })
   }
 
@@ -45,12 +33,16 @@ class MainTaeHyung extends Component {
       <div className="Main"> 
         <Navbar />
         <main className="main-container">
-          <Feeds 
-            feedData={feedData} 
-            updateComment={this.updateComment}
-            addComment={this.addComment}
-            toggleCommentLike={this.toggleCommentLike}
-            {...this.state}/>
+          <div className="feeds">
+            {this.state.feedList.map((ele) => 
+              <Feed
+                key={ele.id}
+                myData={myData}
+                feedObj={ele} 
+                updateList={(id, list) => this.updateList(id, list)}
+              />
+            )}
+          </div>
           <Aside />
         </main>
       </div>

@@ -1,14 +1,50 @@
 // @import '../../styles/common.scss';
 
 // reset
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: none;
-  border: none;
-  list-style: none;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
 
 // common
 $gray0 : #fafafa;
@@ -55,9 +91,21 @@ $a3e : all .3s ease;
 
 button {
   background: none;
-  border: none;
-  outline: 0;
   cursor: pointer;
+  padding: 0;
+}
+
+button, input {
+  border: 0;
+  outline: 0;
+}
+
+strong {
+  font-weight: bold;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 
@@ -303,7 +351,7 @@ button {
       flex: 2;
       margin-right: 20px;
       .feed {
-        margin-bottom: 30px;
+        margin-bottom: 50px;
         border: 1.5px solid $gray1;
         header {
           @extend %flexBetween;
@@ -354,16 +402,20 @@ button {
             img {
               width: 20px;
               height: 20px;
-              margin-right: 5px;
               border: 1px solid $gray1;
               border-radius: 50%;
               object-fit: cover;
+            }
+            strong {
+              margin-left: 3px;
+              margin-right: 3px;
             }
           }
           .comment-container {
             .my-comment {
               margin-top: 10px;
               .my-comment-more {
+                margin-left: 7px;
                 color: $gray3;
                 cursor: pointer;
               }
@@ -372,7 +424,7 @@ button {
               margin-top: 10px;
               .follower-comment-content {
                 @extend %flexBetween;
-                margin-top: 5px;
+                margin-top: 7px;
                 button {
                   .like-false {display: block;}
                   .like-true {display: none;}
@@ -461,7 +513,10 @@ button {
               object-fit: cover;
             }
             div {
-              p {color: $gray3;}
+              p {
+                margin-top: 5px;
+                color: $gray3;
+              }
             }
             &:last-child {
               margin-bottom: 0;
@@ -493,7 +548,10 @@ button {
                 object-fit: cover;
               }
               div {
-                p {color: $gray3;}
+                p {
+                  margin-top: 5px;
+                  color: $gray3;
+                }
               }
             }
             button {color: $active-sky;}
