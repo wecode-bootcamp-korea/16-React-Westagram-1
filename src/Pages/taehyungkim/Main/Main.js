@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { myData, feedData } from '../data/data'
-import './Main.scss'
 import Navbar from './Components/navbar'
 import Feed from './Components/feed'
 import Aside from './Components/aside'
+import { myData, feedData } from '../data/data'
+import './Main.scss'
 
 class MainTaeHyung extends Component {
   constructor(props) {
@@ -20,7 +20,8 @@ class MainTaeHyung extends Component {
   }
 
   updateList(id, list) {
-    const newList = this.state.feedList.map(ele => {
+    const { feedList } = this.state;
+    const newList = feedList.map(ele => {
       return (ele.id === id) ? {...ele, follower: list} : ele
     })
     this.setState({

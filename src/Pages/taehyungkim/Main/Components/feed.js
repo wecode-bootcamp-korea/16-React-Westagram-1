@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { feedHeadSVG, btnConSVG } from '../../data/config'
 import Comment from './comment';
+import { feedHeadSVG, btnConSVG } from '../../data/config';
 
 class Feed extends Component {
   constructor(props) {
@@ -20,24 +20,28 @@ class Feed extends Component {
 
   addComment = (e) => {
     e.preventDefault();
-    let newList = this.state.commentList;
+    const { feedObj, updateList } = this.props;
+    const { commentList } = this.state;
+    let newList = commentList;
     const newComment = {id: newList[newList.length-1].id + 1, name: this.props.myData.name, comment: this.state.commentVal, like: false};
     newList.push(newComment);
     this.setState({
       commentVal: '',
       commentList: newList
     })
-    this.props.updateList(this.props.feedObj.id, this.state.commentList)
+    updateList(feedObj.id, commentList)
   }
 
   toggleCommentLike = (targetId) => {
-    const newList = this.state.commentList.map(comment => 
+    const { feedObj, updateList } = this.props;
+    const { commentList } = this.state;
+    const newList = commentList.map(comment => 
       (comment.id === targetId) ? {...comment, like: !comment.like} : {...comment}
     )
     this.setState({
       commentList: newList
     })
-    this.props.updateList(this.props.feedObj.id, this.state.commentList)
+    updateList(feedObj.id, commentList)
   }
 
   render() {

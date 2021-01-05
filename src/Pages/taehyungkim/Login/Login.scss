@@ -96,10 +96,10 @@ $a3e : all .3s ease;
       .show-pwd-btn {
         position: absolute;
         right: -3px;
-        top: 52px;
+        top: 54px;
         width: 50px;
         background: transparent;
-        color: #C5E1FB;
+        color: #5f7d9f;
         font-size: 14px;
         font-weight: bold;
         cursor: pointer;
@@ -108,15 +108,15 @@ $a3e : all .3s ease;
         width: 260px;
         padding: 8px;
         margin: 8px auto;
-        color: #ffffff;
         background: #C5E1FB;
+        color: #5F7D9F;
         border: 0;
         border-radius: 5px;
         font-weight: 600;  
         outline: 0;
-        cursor: pointer;
         &.active {
           background: #0096F6;
+          color: #ffffff;
           cursor: pointer;
         }
         a {

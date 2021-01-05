@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Login.scss'
-// import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 class LoginTaeHyung extends Component {
@@ -9,7 +8,7 @@ class LoginTaeHyung extends Component {
     this.state = {
       idValue : '',
       pwValue : '',
-      showPw : false
+      isPwShown : false
     }
   }
 
@@ -19,7 +18,8 @@ class LoginTaeHyung extends Component {
   }
 
   handleClick = () => {
-    this.setState({ showPw: !this.state.showPw })
+    const { isPwShown } = this.state;
+    this.setState({ isPwShown: !isPwShown })
   }
 
   checkValidation = (e) => {
@@ -41,37 +41,37 @@ class LoginTaeHyung extends Component {
   }
 
   render() {
-    const activeBtn = (this.state.idValue.length && this.state.pwValue.length) !== 0;
+    const { idValue, pwValue, isPwShown } = this.state;
+    const { handleInput, handleClick, checkValidation } = this;
+    const activeBtn = (idValue.length && pwValue.length) !== 0;
 
     return (
       <div className="Login">    
         <main className="login-container">
           <h1>instargram</h1>
-          <form onSubmit={this.checkValidation}>
+          <form onSubmit={checkValidation}>
             <input 
               type="text"
               name='idValue'
-              value={this.state.idValue}
-              onChange={(e) => this.handleInput(e)}
+              value={idValue}
+              onChange={(e) => handleInput(e)}
               placeholder="전화번호, 사용자 이름 또는 이메일" />
             <p>아이디는 최소 6글자 이상!</p>
             <input 
-              type={this.state.showPw ? "text" : "password"}
+              type={isPwShown ? "text" : "password"}
               name='pwValue'
-              value={this.state.pwValue}
+              value={pwValue}
               onChange={(e) => this.handleInput(e)}
               placeholder="비밀번호" />
-            <span className="show-pwd-btn" onClick={this.handleClick}>
-              {!this.state.showPw ? 'Show' : 'Hide'}
+            <span className="show-pwd-btn" onClick={handleClick}>
+              {isPwShown ? 'Hide' : 'Show'}
             </span>
             <p>비밀번호는 8~15자의 영문(대소)/숫자/특수문자 혼합!</p>
-            <button type="submit" className={`${activeBtn ? 'active' : ''}`} onClick={this.goToMain}>
-              {/* <Link to="/main"> */}
+            <button type="submit" className={`${activeBtn ? 'active' : ''}`}>
                 로그인
-              {/* </Link> */}
             </button>
           </form>
-          <p className="find-pwd"><a href="/password-finder.html">비밀번호를 잊으셨나요?</a></p>
+          <p className="find-pwd"><a href="/password-finder">비밀번호를 잊으셨나요?</a></p>
         </main>
       </div>
     )
