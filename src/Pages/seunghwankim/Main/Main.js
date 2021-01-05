@@ -1,7 +1,8 @@
 import React from 'react';
 import Comment from './Components/Comment'
 import Member from './Components/Member'
-import { COMMENT, MEMBER_INFO } from './data'
+import Footer from './Components/Footer'
+import { COMMENT, MEMBER_INFO, FOOTER_INFO } from './data'
 import './Main.scss';
 
 class Main extends React.Component {
@@ -10,14 +11,16 @@ class Main extends React.Component {
         this.state = {
             commentInputValue: '',
             commentList: [],
-            memberList: []
+            memberList: [],
+            footerList: []
         }
     }
 
     componentDidMount() {
         this.setState({
             commentList: COMMENT,
-            memberList: MEMBER_INFO
+            memberList: MEMBER_INFO,
+            footerList: FOOTER_INFO
         })
     }
 
@@ -149,7 +152,10 @@ class Main extends React.Component {
                             <footer>
                                 <div className="footer_menu">
                                     <ul>
-                                        <li>소개</li>
+                                        {this.state.footerList.map(footer => {
+                                            return <Footer key={footer.id} title={footer.title}/>
+                                        })}
+                                        {/* <li>소개</li>
                                         <li>도움말</li>
                                         <li>홍보 센터</li>
                                         <li>API</li>
@@ -159,7 +165,7 @@ class Main extends React.Component {
                                         <li>위치</li>
                                         <li>인기 계정</li>
                                         <li>해시태그</li>
-                                        <li>언어</li>
+                                        <li>언어</li> */}
                                     </ul>
                                 </div>
                                 <div className="copyr">&copy; 2020</div>
