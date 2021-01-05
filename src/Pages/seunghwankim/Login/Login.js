@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Login.scss';
-// import '../../reset.scss';
 
 class Login extends React.Component {
     constructor() {

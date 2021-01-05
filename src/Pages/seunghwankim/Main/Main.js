@@ -2,7 +2,6 @@ import React from 'react';
 import Comment from './Components/Comment'
 import COMMENT from './data'
 import './Main.scss';
-// import '../../reset.scss';
 
 class Main extends React.Component {
     constructor() {
