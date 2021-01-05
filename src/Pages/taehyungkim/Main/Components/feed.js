@@ -6,28 +6,35 @@ class Feed extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showMore: false,
-      commentVal: '',
-      commentList: this.props.feedObj.follower,
+      isShowMore: false,
+      commentList: [],
+      commentValue: '',
     }
   }
 
-  updateComment = (e) => {
+  componentDidMount() {
+    const { follower } = this.props.feedObj;
     this.setState({
-      commentVal: e.target.value
+      commentList: follower,
+    })
+  }
+
+  updateComment = (e) => {
+    const { value } = e.target;
+    this.setState({
+      commentValue: value
     })
   }
 
   addComment = (e) => {
     e.preventDefault();
-    const { feedObj, updateList } = this.props;
-    const { commentList } = this.state;
-    let newList = commentList;
-    const newComment = {id: newList[newList.length-1].id + 1, name: this.props.myData.name, comment: this.state.commentVal, like: false};
-    newList.push(newComment);
+    const { myData, feedObj, updateList } = this.props;
+    const { commentList, commentValue } = this.state;
+    const newComment = {id: commentList[commentList.length-1].id + 1, name: myData.name, comment: commentValue, like: false};
+    const newList = commentList.concat(newComment);
     this.setState({
-      commentVal: '',
-      commentList: newList
+      commentList: newList,
+      commentValue: '',
     })
     updateList(feedObj.id, commentList)
   }
@@ -46,6 +53,8 @@ class Feed extends Component {
 
   render() {
     const { profile, img, like, myComment } = this.props.feedObj;
+    const { isShowMore, commentList, commentValue } = this.state;
+    const { updateComment, addComment, toggleCommentLike } = this;
 
     return (
       <article className="feed">
@@ -62,7 +71,7 @@ class Feed extends Component {
         <footer>
           <div className="btn-container">
             <div className="btn-container-left">
-              <button className="btn-container-like" key="btn-container-like" onClick={(e) => e.target.parentNode.classList.toggle('like')}>
+              <button className="btn-container-like" key="btn-container-like" onClick={(e) => document.querySelector('.btn-container-like').classList.toggle('like')}>
                 {btnConSVG[0]}
               </button>
               <button className="btn-container-comment" key="btn-container-comment">
@@ -86,23 +95,23 @@ class Feed extends Component {
             <div className="my-comment">
               <strong className="my-comment-name">{profile.name}</strong>
               <span className="my-comment-text">
-                {this.state.showMore ? myComment : `${myComment.substring(0, 30)}...`}
+                {isShowMore ? myComment : `${myComment.substring(0, 30)}...`}
               </span>
-              <span className="my-comment-more" onClick={() => this.setState({showMore: !this.state.showMore})}>
-                {this.state.showMore ? '숨기기' : '더보기'}
+              <span className="my-comment-more" onClick={() => this.setState({isShowMore: !isShowMore})}>
+                {isShowMore ? '숨기기' : '더보기'}
               </span>
             </div>
             <div className="follower-comment-container">
-              {this.state.commentList.map(comment => 
-                <Comment key={comment.id} {...comment} toggleCommentLike={this.toggleCommentLike} />
+              {commentList.map(comment => 
+                <Comment key={comment.id} {...comment} toggleCommentLike={toggleCommentLike} />
               )}
             </div>
           </div>
           <p className="time-content">42분 전</p>
         </footer>
-        <form onSubmit={this.addComment}>
-          <input type="text" placeholder="댓글 달기..." value={this.state.commentVal} onChange={this.updateComment} />
-          <button type="submit" className={(this.state.commentVal) && 'active'}>게시</button>
+        <form onSubmit={addComment}>
+          <input type="text" placeholder="댓글 달기..." value={commentValue} onChange={updateComment} />
+          <button type="submit" className={(commentValue) && 'active'}>게시</button>
         </form>
       </article>
     )

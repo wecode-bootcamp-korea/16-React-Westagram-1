@@ -1,21 +1,42 @@
 import React, { Component } from 'react';
+import { followersData } from '../../data/data'
 import { navSubSVG } from '../../data/config'
 
 class Navbar extends Component {
-  
-  toggleSearch = () => {
-    const navSearch = document.querySelector('.nav-search');
-    if (navSearch.classList.contains('focus')) {
-      navSearch.classList.remove('focus')
-      this.idInput.blur();
-    }
-    else {
-      navSearch.classList.add('focus')
-      this.idInput.focus();
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSearchFocused : false,
+      searchValue: '',
+      idList : [],
     }
   }
 
+  componentDidMount() {
+    this.setState({
+      idList: followersData,
+    })
+  }
+
+  toggleSearch = () => {
+    const { isSearchFocused } = this.state;
+    const { idInput } = this;
+    this.setState({ isSearchFocused: !isSearchFocused });
+    isSearchFocused ? idInput.blur() : idInput.focus();
+  }
+
+  exitIdList = () => {
+    this.setState({
+      isSearchFocused: false, 
+      searchValue: '',
+      idList: [],
+    })
+  }
+
   render() {
+    const { searchValue, isSearchFocused, idList } = this.state;
+    const { toggleSearch, exitIdList } = this;
+
     return (
       <nav className="nav-bar">
         <section className="nav-container">
@@ -28,23 +49,35 @@ class Navbar extends Component {
               <a href="/main-taehyung">Instagram</a>
             </p>
           </div>
-          <div className="nav-search" onClick={this.toggleSearch}>
-            <input type="text" placeholder="검색...." ref={(input) => {this.idInput = input}}/>
+          <div className={`nav-search ${isSearchFocused && 'focus'}`} onClick={toggleSearch}>
+            <input 
+              type="text" 
+              value={searchValue}
+              onChange={(e) => this.setState({ searchValue: e.target.value })}
+              ref={(input) => {this.idInput = input}}
+              placeholder="검색...." />
             <div className="nav-search-placeholder" >
               <i className="fas fa-search"></i><span className="placeholder">검색</span>
             </div>
             <div className="nav-search-end">
               <button type="button"><i className="fas fa-times-circle"></i></button>
             </div>
-            <div className="search-id-container">
-              <div className="search-id">
-                <div className="search-id-left">
-                  <strong className="search-id-name">ID!!</strong>
-                  <p className="search-id-desc">설명입니다.</p>
-                </div>
-                <button>팔로우</button>
-              </div>
-            </div>
+            <ul className={`search-id-container ${searchValue && 'show'}`} onClick={exitIdList}>
+              {idList
+                .filter(ele => ele.name.includes(searchValue))
+                .map(idInfo => {
+                const { id, name, follow } = idInfo;
+                return (
+                  <li className="search-id" key={id}>
+                    <div className="search-id-left">
+                      <strong className="search-id-name">{name}</strong>
+                      <p className="search-id-desc">팔로우 중{follow ? '입니다😄' : '이지 않습니다🥺'}</p>
+                    </div>
+                    <button>{follow ? '프로필' : '팔로우'}</button>
+                  </li>
+                )
+              })}
+            </ul>
           </div>
           <ul className="nav-menus">
             <li className="nav-menu gps" key="gps">

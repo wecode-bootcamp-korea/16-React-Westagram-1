@@ -144,7 +144,7 @@ button, input {
           }
         }
         &.focus {
-          .nav-search-input::placeholder {
+          input::placeholder {
             visibility: visible;
             color: $gray2;
           }
@@ -191,7 +191,7 @@ button, input {
             padding: 15px;
             border-bottom: 1px solid $gray1;
             .search-id-desc {   
-              margin-top: 3px;
+              margin-top: 5px;
               color: $gray3;
             }
             button {
@@ -520,13 +520,16 @@ button, input {
       }
       .right-container {
         color: $gray3;
+        .right-text {
+          line-height: 1.5;
+        }
       }
     }
   }
 }
 
 
-/* 9. [추가구현] Responsive Web  */
+/* 9. [추가구현] Responsive Web - Mixin 사용필요  */
 
 /* 1000px(small monitor, tablet) */
 // @media (max-width: 1000px) {

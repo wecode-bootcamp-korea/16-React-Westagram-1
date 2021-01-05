@@ -31,16 +31,16 @@ const feedData = [
 ]
 
 const followersData = [
-  { id: 1, name: 'canon_mj', following: true},
-  { id: 2, name: 'canon_friend', following: true},
-  { id: 3, name: 'jeongyeon_love', following: true},
-  { id: 4, name: 'sana_no_mossana', following: true},
-  { id: 5, name: 'arrow_goddess', following: true},
-  { id: 6, name: 'bunnybunny_nayeon', following: true},
-  { id: 7, name: 'mina_is_mina', following: true},
-  { id: 8, name: 'tohu_dahyun', following: false},
-  { id: 9, name: 'momo_is_chulbuzi', following: false},
-  { id: 10, name: 'jihyo_dieter', following: false},
+  { id: 1, name: 'canon_mj', follow: true},
+  { id: 2, name: 'canon_friend', follow: true},
+  { id: 3, name: 'jeongyeon_love', follow: true},
+  { id: 4, name: 'sana_no_mossana', follow: true},
+  { id: 5, name: 'arrow_goddess', follow: true},
+  { id: 6, name: 'bunnybunny_nayeon', follow: true},
+  { id: 7, name: 'mina_is_mina', follow: true},
+  { id: 8, name: 'tohu_dahyun', follow: false},
+  { id: 9, name: 'momo_is_chulbuzi', follow: false},
+  { id: 10, name: 'jihyo_dieter', follow: false},
 ] 
 
 export { myData, feedData, followersData };
