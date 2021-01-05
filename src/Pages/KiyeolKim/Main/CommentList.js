@@ -9,35 +9,20 @@ class CommentList extends Component {
 
   // componentDidUpdate() => scrollDown Event
   componentDidUpdate() {
-    if (this.ref.current)
-      this.ref.current.scrollIntoView({ behavior: "smooth" });
+    const { current } = this.ref;
+    if (current) current.scrollIntoView({ behavior: "smooth" });
   }
 
   render() {
-    const { commentList } = this.props;
+    const { userName, commentValue } = this.props;
 
     return (
-      <>
-        <ul id="feed__comment__add">
-          <li>
-            <div className="westagram__feed__info">
-              <p>ky_day</p>
-              <span>Happy new Year!! ...</span>
-            </div>
-          </li>
-
-          {commentList.map((content, idx) => {
-            return (
-              <li key={idx} ref={this.ref}>
-                <div className="westagram__feed__info">
-                  <p>ky_day</p>
-                  <span>{content}</span>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </>
+      <li ref={this.ref}>
+        <div className="westagram__feed__info">
+          <p>{userName}</p>
+          <span>{commentValue}</span>
+        </div>
+      </li>
     );
   }
 }

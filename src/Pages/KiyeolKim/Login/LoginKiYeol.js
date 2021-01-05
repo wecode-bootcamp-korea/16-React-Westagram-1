@@ -32,6 +32,31 @@ class Login extends Component {
 
   render() {
     const isVaildBtn = this.state.id.includes("@") && this.state.pw.length >= 5;
+
+    const { id, pw } = this.state;
+
+    const contentInfoArr = [
+      "소개",
+      "블로그",
+      "채용 정보",
+      "도움말",
+      "API",
+      "개인정보처리방침",
+      "약관",
+      "인기 계정",
+      "해시태그",
+      "위치",
+    ];
+    const contentInfoArr__02 = [
+      "뷰티",
+      "댄스 및 공연",
+      "피트니스",
+      "식음료",
+      "집 및 정원",
+      "음악",
+      "시각 예술",
+    ];
+
     return (
       // main container
       <>
@@ -58,7 +83,7 @@ class Login extends Component {
                         type="text"
                         className="input--text"
                         placeholder="전화번호, 사용자 이름 또는 이메일"
-                        value={this.state.id}
+                        value={id}
                         onChange={this.handleLoginInfo}
                       />
                     </li>
@@ -68,7 +93,7 @@ class Login extends Component {
                         type="password"
                         className="input--password"
                         placeholder="비밀번호"
-                        value={this.state.pw}
+                        value={pw}
                         onChange={this.handleLoginInfo}
                       />
                     </li>
@@ -132,25 +157,14 @@ class Login extends Component {
         {/* foter content info */}
         <footer className="westagram__contentinfo">
           <ul>
-            <li>소개</li>
-            <li>블로그</li>
-            <li>채용 정보</li>
-            <li>도움말</li>
-            <li>API</li>
-            <li>개인정보처리방침</li>
-            <li>약관</li>
-            <li>인기 계정</li>
-            <li>해시태그</li>
-            <li>위치</li>
+            {contentInfoArr.map((list) => {
+              return <li>{list}</li>;
+            })}
           </ul>
           <ul>
-            <li>뷰티</li>
-            <li>댄스 및 공연</li>
-            <li>피트니스</li>
-            <li>식음료</li>
-            <li>집 및 정원</li>
-            <li>음악</li>
-            <li>시각 예술</li>
+            {contentInfoArr__02.map((list) => {
+              return <li>{list}</li>;
+            })}
           </ul>
           <div className="westagram__language__group">
             <select className="westagram__language">

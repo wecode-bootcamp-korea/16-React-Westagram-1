@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CommentList from "./CommentList";
 import RecommendList from "./RecommendList";
 import "./Main.scss";
+import StoryList from "./StoryList";
 
 class Main extends Component {
   constructor() {
@@ -9,14 +10,36 @@ class Main extends Component {
     this.state = {
       commentValue: "",
       commentList: [],
+      recommendList: [],
+      storyList: [],
     };
   }
 
+  componentDidMount() {
+    fetch("http://localhost:3000/data/data.json", {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        this.setState({
+          commentList: res.CommentData,
+          recommendList: res.RecommendData,
+          storyList: res.StoryData,
+        });
+      });
+  }
+
   handleCommentCreate = (data) => {
-    const { commentList } = this.state;
+    const { commentList, commentValue } = this.state;
+
+    const user = {
+      id: commentList.length + 1,
+      userName: "ky_day",
+      content: commentValue,
+    };
 
     this.setState({
-      commentList: commentList.concat([this.state.commentValue]),
+      commentList: [...commentList, user],
       commentValue: "",
     });
   };
@@ -26,6 +49,7 @@ class Main extends Component {
   };
 
   render() {
+    const { commentList, commentValue, recommendList, storyList } = this.state;
     return (
       <>
         <nav className="Main">
@@ -53,41 +77,9 @@ class Main extends Component {
           <section className="section__group">
             <div className="westagram__group__box">
               <ul className="westagram__story__box">
-                <li>
-                  <img
-                    src="../images/KiyeolKim/westagram--profile.jpg"
-                    alt="westagram--profile"
-                  />
-                  <p>smile01</p>
-                </li>
-                <li>
-                  <img
-                    src="../images/KiyeolKim/westagram--profile.jpg"
-                    alt="westagram--profile"
-                  />
-                  <p>smile02</p>
-                </li>
-                <li>
-                  <img
-                    src="../images/KiyeolKim/westagram--profile.jpg"
-                    alt="westagram--profile"
-                  />
-                  <p>smile03</p>
-                </li>
-                <li>
-                  <img
-                    src="../images/KiyeolKim/westagram--profile.jpg"
-                    alt="westagram--profile"
-                  />
-                  <p>smile04</p>
-                </li>
-                <li>
-                  <img
-                    src="../images/KiyeolKim/westagram--profile.jpg"
-                    alt="westagram--profile"
-                  />
-                  <p>smile05</p>
-                </li>
+                {storyList.map((list) => {
+                  return <StoryList key={list.id} userName={list.userName} />;
+                })}
               </ul>
               <article className="westagram__feed__box">
                 <div className="westagram__feed__header">
@@ -97,7 +89,36 @@ class Main extends Component {
                   />
                   <div className="feed__name__box">
                     <a href="#!">ky_day</a>
-                    <i className="fas fa-ellipsis-h"></i>
+                    <svg
+                      aria-label="옵션 더 보기"
+                      className="_8-yf5 "
+                      fill="#262626"
+                      height="16"
+                      viewBox="0 0 48 48"
+                      width="16"
+                    >
+                      <circle
+                        clipRule="evenodd"
+                        cx="8"
+                        cy="24"
+                        fillRule="evenodd"
+                        r="4.5"
+                      ></circle>
+                      <circle
+                        clipRule="evenodd"
+                        cx="24"
+                        cy="24"
+                        fillRule="evenodd"
+                        r="4.5"
+                      ></circle>
+                      <circle
+                        clipRule="evenodd"
+                        cx="40"
+                        cy="24"
+                        fillRule="evenodd"
+                        r="4.5"
+                      ></circle>
+                    </svg>
                   </div>
                 </div>
                 <div className="westagram__feed__photo">
@@ -151,19 +172,29 @@ class Main extends Component {
                   <span>...</span>
                   <button>더 보기</button>
                 </div>
-                <CommentList commentList={this.state.commentList} />
+                <ul id="feed__comment__add">
+                  {commentList.map((content) => {
+                    return (
+                      <CommentList
+                        userName={content.userName}
+                        commentValue={content.content}
+                        key={content.id}
+                      />
+                    );
+                  })}
+                </ul>
                 <div className="westagram__feed__comment">
                   <input
                     type="text"
                     placeholder="댓글 달기..."
-                    value={this.state.commentValue}
+                    value={commentValue}
                     onChange={this.handleCommentInfo}
                     className="feed__comment__input"
                   />
                   <button
                     className="feed__comment__Btn"
                     onClick={this.handleCommentCreate}
-                    disabled={!this.state.commentValue}
+                    disabled={!commentValue}
                   >
                     게시
                   </button>
@@ -187,7 +218,21 @@ class Main extends Component {
                   <a href="#!">모두 보기</a>
                 </div>
               </div>
-              <RecommendList />
+
+              <div className="recommend__box">
+                <ul className="profile__box">
+                  {recommendList.map((list) => {
+                    return (
+                      <RecommendList
+                        key={list.id}
+                        userName={list.userName}
+                        follower={list.follower}
+                      />
+                    );
+                  })}
+                </ul>
+              </div>
+
               <div className="westagram__copyright">
                 <p>© 2020 WESTAGRAM FROM Kiyeol Kim</p>
               </div>
