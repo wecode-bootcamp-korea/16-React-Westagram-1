@@ -43,8 +43,9 @@ class LoginTaeHyung extends Component {
   render() {
     const { idValue, pwValue, isPwShown } = this.state;
     const { handleInput, handleClick, checkValidation } = this;
+    const regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
     const activeBtn = (idValue.length && pwValue.length) !== 0;
-
+    
     return (
       <div className="Login">    
         <main className="login-container">
@@ -56,22 +57,26 @@ class LoginTaeHyung extends Component {
               value={idValue}
               onChange={(e) => handleInput(e)}
               placeholder="전화번호, 사용자 이름 또는 이메일" />
-            <p>아이디는 최소 6글자 이상!</p>
-            <input 
-              type={isPwShown ? "text" : "password"}
-              name='pwValue'
-              value={pwValue}
-              onChange={(e) => this.handleInput(e)}
-              placeholder="비밀번호" />
-            <span className="show-pwd-btn" onClick={handleClick}>
-              {isPwShown ? 'Hide' : 'Show'}
-            </span>
-            <p>비밀번호는 8~15자의 영문(대소)/숫자/특수문자 혼합!</p>
+            <p className={idValue && idValue.length < 6 && 'active'}>아이디는 최소 6글자 이상의 이메일 형식!</p>
+            <div className="input-pw-container">
+              <input 
+                type={isPwShown ? "text" : "password"}
+                name='pwValue'
+                value={pwValue}
+                onChange={(e) => handleInput(e)}
+                placeholder="비밀번호" />
+              <span className="show-pw-btn" onClick={handleClick}>
+                {isPwShown ? 'Hide' : 'Show'}
+              </span>
+              <p className={pwValue && !regex.test(pwValue) && 'active'}>
+                비밀번호는 8~15자의 영문(대소)/숫자/특수문자 혼합!
+              </p>              
+            </div>
             <button type="submit" className={`${activeBtn ? 'active' : ''}`}>
                 로그인
             </button>
           </form>
-          <p className="find-pwd"><a href="/password-finder">비밀번호를 잊으셨나요?</a></p>
+          <p className="find-pw"><a href="/password-finder">비밀번호를 잊으셨나요?</a></p>
         </main>
       </div>
     )
