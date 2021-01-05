@@ -1,6 +1,7 @@
 import React from 'react';
 import Comment from './Components/Comment'
-import COMMENT from './data'
+import Member from './Components/Member'
+import { COMMENT, MEMBER_INFO } from './data'
 import './Main.scss';
 
 class Main extends React.Component {
@@ -8,13 +9,15 @@ class Main extends React.Component {
         super();
         this.state = {
             commentInputValue: '',
-            commentList: []
+            commentList: [],
+            memberList: []
         }
     }
 
     componentDidMount() {
         this.setState({
-            commentList: COMMENT
+            commentList: COMMENT,
+            memberList: MEMBER_INFO
         })
     }
 
@@ -138,71 +141,9 @@ class Main extends React.Component {
                             <div className="recommend_box">
                                 <div className="recommend">회원님을 위한 추천</div>
                                 <div className="recommend_list">
-                                    <div className="member_block">
-                                        <div className="member_img">
-                                            <img src="https://scontent-ort2-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-ort2-2.cdninstagram.com&_nc_ohc=FbyWMPXOjYgAX_hZ25G&oh=3e9c84895822d1bfb2ef77cdeeae0acf&oe=600CD80F&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2"
-                                                alt="profile_img" />
-                                        </div>
-                                        <div className="member_info">
-                                            <div className="member_id">member1</div>
-                                            <div>회원님을 위한 추천</div>
-                                        </div>
-                                        <div className="follow_btn_block">
-                                            <button className="follow_btn">팔로우</button>
-                                        </div>
-                                    </div>
-                                    <div className="member_block">
-                                        <div className="member_img">
-                                            <img src="https://scontent-ort2-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-ort2-2.cdninstagram.com&_nc_ohc=FbyWMPXOjYgAX_hZ25G&oh=3e9c84895822d1bfb2ef77cdeeae0acf&oe=600CD80F&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2"
-                                                alt="profile_img" />
-                                        </div>
-                                        <div className="member_info">
-                                            <div className="member_id">member2</div>
-                                            <div>회원님을 위한 추천</div>
-                                        </div>
-                                        <div className="follow_btn_block">
-                                            <button className="follow_btn">팔로우</button>
-                                        </div>
-                                    </div>
-                                    <div className="member_block">
-                                        <div className="member_img">
-                                            <img src="https://scontent-ort2-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-ort2-2.cdninstagram.com&_nc_ohc=FbyWMPXOjYgAX_hZ25G&oh=3e9c84895822d1bfb2ef77cdeeae0acf&oe=600CD80F&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2"
-                                                alt="profile_img" />
-                                        </div>
-                                        <div className="member_info">
-                                            <div className="member_id">member3</div>
-                                            <div>회원님을 위한 추천</div>
-                                        </div>
-                                        <div className="follow_btn_block">
-                                            <button className="follow_btn">팔로우</button>
-                                        </div>
-                                    </div>
-                                    <div className="member_block">
-                                        <div className="member_img">
-                                            <img src="https://scontent-ort2-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-ort2-2.cdninstagram.com&_nc_ohc=FbyWMPXOjYgAX_hZ25G&oh=3e9c84895822d1bfb2ef77cdeeae0acf&oe=600CD80F&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2"
-                                                alt="profile_img" />
-                                        </div>
-                                        <div className="member_info">
-                                            <div className="member_id">member4</div>
-                                            <div>회원님을 위한 추천</div>
-                                        </div>
-                                        <div className="follow_btn_block">
-                                            <button className="follow_btn">팔로우</button>
-                                        </div>
-                                    </div>
-                                    <div className="member_block">
-                                        <div className="member_img">
-                                            <img src="https://scontent-ort2-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-ort2-2.cdninstagram.com&_nc_ohc=FbyWMPXOjYgAX_hZ25G&oh=3e9c84895822d1bfb2ef77cdeeae0acf&oe=600CD80F&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.2"
-                                                alt="profile_img" />
-                                        </div>
-                                        <div className="member_info">
-                                            <div className="member_id">member5</div>
-                                            <div>회원님을 위한 추천</div>
-                                        </div>
-                                        <div className="follow_btn_block">
-                                            <button className="follow_btn">팔로우</button>
-                                        </div>
-                                    </div>
+                                    {this.state.memberList.map(member => {
+                                        return <Member key={member.id} memberName={member.memberName} />
+                                    })}
                                 </div>
                             </div>
                             <footer>
