@@ -37,6 +37,7 @@ class Feed extends Component {
     this.setState({
       commentList: newList
     })
+    this.props.updateList(this.props.feedObj.id, this.state.commentList)
   }
 
   render() {
