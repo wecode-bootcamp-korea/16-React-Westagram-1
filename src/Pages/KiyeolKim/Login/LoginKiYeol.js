@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import "../../../styles/common.scss";
 import "./Login.scss";
 
 class Login extends Component {
@@ -13,6 +14,7 @@ class Login extends Component {
 
   handleLoginInfo = (e) => {
     const { id, value } = e.target;
+
     this.setState({ [id]: value }, () => {
       console.log(`ID: ${this.state.id},  PW: ${this.state.pw}`);
     });
@@ -28,6 +30,18 @@ class Login extends Component {
       alert("로그인 완료!");
       this.props.history.push("/main-kiyeol");
     }
+
+    // fetch(API, {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     email: id,
+    //     password: pw,
+    //   }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => {
+
+    //   });
   };
 
   render() {
