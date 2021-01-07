@@ -16,7 +16,7 @@ class LoginTaeHyung extends Component {
   }
 
   handleInput = (e) => {
-    const { name, value } = e.target;   // 비구조화(destructuring)
+    const { name, value } = e.target;  
     this.setState({ [name]: value })
   }
 
@@ -47,11 +47,21 @@ class LoginTaeHyung extends Component {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log({ result });
         localStorage.setItem("token", result.Authorization);
         this.setState({
           token: result.Authorization
         })
+        if (result.message === "SUCCESS" && this.state.token) {
+          this.props.history.push('/main-taehyung');
+        }
+        else {
+          alert('가입되지 않은 계정입니다!');
+          this.props.history.push('/login-taehyung');
+          this.setState({
+            idValue: '',
+            pwValue: '',
+          })
+        }
       })
   }
 
@@ -62,8 +72,7 @@ class LoginTaeHyung extends Component {
     const activeBtn = (idValue.length && pwValue.length) !== 0;
     
     return (
-      <div className="Login"> 
-        <h2>{token ? '마이 페이지' : '로그인/회원가입'}</h2>
+      <div className="Login">
         <main className="login-container">
           <h1>instargram</h1>
           <form onSubmit={checkValidation}>
