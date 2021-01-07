@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import './Login.scss'
 import { withRouter } from 'react-router-dom';
+import { SIGNUP_API, SIGNIN_API } from '../data/config'
+import './Login.scss'
+
 
 class LoginTaeHyung extends Component {
   constructor(props) {
@@ -8,7 +10,8 @@ class LoginTaeHyung extends Component {
     this.state = {
       idValue : '',
       pwValue : '',
-      isPwShown : false
+      isPwShown : false,
+      token: '',
     }
   }
 
@@ -22,32 +25,45 @@ class LoginTaeHyung extends Component {
     this.setState({ isPwShown: !isPwShown })
   }
 
+  checkToken = () => {
+    const token = localStorage.getItem('token');
+    console.log({ token })
+  }
+
   checkValidation = (e) => {
     e.preventDefault();
     const { idValue, pwValue } = this.state;
-    const checkResult = (idValue.includes('@') && pwValue.length >= 4);
-    if (checkResult) {
-      alert('메인 페이지로 이동합니다.')
-      this.props.history.push('/main-taehyung') 
+    const checkResult = (idValue.includes('@') && pwValue.length >= 8);
+    if (!checkResult) {
+      alert('올바르지 않은 이메일, 비밀번호 입니다.')
+      return;
     }
-    else {
-      alert('아이디, 비밀번호가 올바르지 않습니다.')
-      this.props.history.push('/login-taehyung');
-      this.setState({
-        idValue: '',
-        pwValue: '',
+    fetch(SIGNIN_API, {
+      method: "POST",
+      body: JSON.stringify({
+        email: idValue,
+        password: pwValue,
       })
-    }
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log({ result });
+        localStorage.setItem("token", result.Authorization);
+        this.setState({
+          token: result.Authorization
+        })
+      })
   }
 
   render() {
-    const { idValue, pwValue, isPwShown } = this.state;
-    const { handleInput, handleClick, checkValidation } = this;
+    const { idValue, pwValue, isPwShown, token } = this.state;
+    const { handleInput, handleClick, checkValidation, checkToken } = this;
     const regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
     const activeBtn = (idValue.length && pwValue.length) !== 0;
     
     return (
-      <div className="Login">    
+      <div className="Login"> 
+        <h2>{token ? '마이 페이지' : '로그인/회원가입'}</h2>
         <main className="login-container">
           <h1>instargram</h1>
           <form onSubmit={checkValidation}>
@@ -75,6 +91,7 @@ class LoginTaeHyung extends Component {
             <button type="submit" className={`${activeBtn ? 'active' : ''}`}>
                 로그인
             </button>
+            <button type="button" onClick={checkToken}>토큰확인</button>
           </form>
           <p className="find-pw"><a href="/password-finder">비밀번호를 잊으셨나요?</a></p>
         </main>
