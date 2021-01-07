@@ -6,7 +6,7 @@ import { circleSVG, feedStatusSVG } from "./svgData";
 import "../../../styles/common.scss";
 import "./Main.scss";
 
-class Main extends Component {
+class MainKiYeol extends Component {
   constructor() {
     super();
     this.state = {
@@ -18,9 +18,7 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/data/data.json", {
-      method: "GET",
-    })
+    fetch("http://localhost:3000/data/data.json")
       .then((res) => res.json())
       .then((res) => {
         this.setState({
@@ -59,7 +57,7 @@ class Main extends Component {
     return (
       <>
         {/* Main navbar */}
-        <nav className="Main">
+        <nav className="MainKiYeol">
           <div className="nav__group">
             <div className="nav__left">
               <img
@@ -112,7 +110,7 @@ class Main extends Component {
                 {/* Feed status icon */}
                 <div className="westagram__feed__status">
                   <button
-                    onClick={(e) => e.target.classList.toggle("myLikeOn")}
+                    onClick={(e) => !e.target.classList.toggle("myLikeOn")}
                   >
                     {feedStatusSVG[0]}
                   </button>
@@ -206,4 +204,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default MainKiYeol;

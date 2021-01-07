@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { SIGNUP_API, SIGNIN_API } from "../../../config";
 import "../../../styles/common.scss";
 import "./Login.scss";
 
-class Login extends Component {
+class LoginKiYeol extends Component {
   constructor() {
     super();
     this.state = {
@@ -20,28 +21,26 @@ class Login extends Component {
     });
   };
 
-  handleValidation = () => {
+  handleValidation = (e) => {
+    e.preventDefault();
     const { id, pw } = this.state;
 
-    const checkInputID = id.includes("@");
-    const checkInputPW = pw.length >= 5;
-
-    if (checkInputID && checkInputPW) {
-      alert("로그인 완료!");
-      this.props.history.push("/main-kiyeol");
-    }
-
-    // fetch(API, {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     email: id,
-    //     password: pw,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-
-    //   });
+    fetch(SIGNIN_API, {
+      method: "POST",
+      body: JSON.stringify({
+        email: id,
+        password: pw,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.message === "SUCCESS") {
+          localStorage.setItem("token", res.Authorization);
+          this.props.history.push("/main-kiyeol");
+        } else if (res.message === "UNAUTHORIZED") {
+          alert("아이디나 비밀번호를 확인해주세요.");
+        }
+      });
   };
 
   render() {
@@ -74,7 +73,7 @@ class Login extends Component {
     return (
       // main container
       <>
-        <main className="Login">
+        <main className="LoginKiYeol">
           {/* content group */}
           <article className="westagram__content">
             <img src="../images/KiyeolKim/home-phones.png" alt="home__phones" />
@@ -171,13 +170,13 @@ class Login extends Component {
         {/* foter content info */}
         <footer className="westagram__contentinfo">
           <ul>
-            {contentInfoArr.map((list) => {
-              return <li>{list}</li>;
+            {contentInfoArr.map((list, index) => {
+              return <li key={index}>{list}</li>;
             })}
           </ul>
           <ul>
-            {contentInfoArr__02.map((list) => {
-              return <li>{list}</li>;
+            {contentInfoArr__02.map((list, index) => {
+              return <li key={index}>{list}</li>;
             })}
           </ul>
           <div className="westagram__language__group">
@@ -193,4 +192,4 @@ class Login extends Component {
   }
 }
 
-export default withRouter(Login);
+export default withRouter(LoginKiYeol);
