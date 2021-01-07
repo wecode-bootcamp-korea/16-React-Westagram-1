@@ -1,0 +1,138 @@
+// @import '../../styles/common.scss';
+
+// common
+$gray0 : #fafafa;
+$gray1 : #e4e4e4;
+$gray2 : #b4b4b4;
+$gray3 : #8e8e8e;
+$active-sky : #0096F6;
+
+$main-width : 935px;
+
+$a3e : all .3s ease; 
+
+%flexBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+%flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%flexAlign {
+  display: flex;
+  align-items: center;
+}
+
+%upArrow {
+  width: 0px;
+  height: 0px;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 10px solid #ffffff;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background: $gray0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.Login {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 360px;
+    padding: 10px 0;
+    border: 1px solid $gray1;
+    background: #ffffff;
+    h1 {
+      margin: 22px auto 12px;
+      font-family: 'Lobster', cursive;
+      font-size: 24px;
+      text-transform: capitalize;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      margin: 24px auto 80px;
+      input {
+        width: 260px;
+        padding: 10px;
+        margin-bottom: 5px;
+        background: $gray0;
+        border: 1px solid $gray1;
+        border-radius: 5px;
+      }
+      p {
+        display: none;
+        margin-bottom: 10px;
+        color: #b61b1b;
+        font-size: 12px;
+        &.active {
+          display: block;
+        }
+      }
+      .input-pw-container {
+        position: relative;
+        .show-pw-btn {
+          position: absolute;
+          top: 13px;
+          right: -3px;
+          width: 50px;
+          background: transparent;
+          color: #5f7d9f;
+          font-size: 14px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+      button {
+        width: 260px;
+        padding: 8px;
+        margin: 8px auto;
+        background: #C5E1FB;
+        color: #5F7D9F;
+        border: 0;
+        border-radius: 5px;
+        font-weight: 600;  
+        outline: 0;
+        &.active {
+          background: #0096F6;
+          color: #ffffff;
+          cursor: pointer;
+        }
+        a {
+          text-decoration: none;
+          color: #ffffff;
+        }
+      }
+    }
+
+    .find-pw {
+      margin: 12px auto 22px;
+      a {
+        text-decoration: none;
+        color: #5F7D9F;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+  }
+}
