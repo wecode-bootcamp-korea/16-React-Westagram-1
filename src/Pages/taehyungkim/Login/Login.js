@@ -66,8 +66,9 @@ class LoginTaeHyung extends Component {
   }
 
   render() {
-    const { idValue, pwValue, isPwShown, token } = this.state;
+    const { idValue, pwValue, isPwShown } = this.state;
     const { handleInput, handleClick, checkValidation, checkToken } = this;
+    const idCheck = idValue.length > 6 && idValue.includes('@');
     const regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
     const activeBtn = (idValue.length && pwValue.length) !== 0;
     
@@ -82,7 +83,7 @@ class LoginTaeHyung extends Component {
               value={idValue}
               onChange={(e) => handleInput(e)}
               placeholder="전화번호, 사용자 이름 또는 이메일" />
-            <p className={idValue && idValue.length < 6 && 'active'}>아이디는 최소 6글자 이상의 이메일 형식!</p>
+            <p className={idValue && !idCheck && 'active'}>아이디는 최소 6글자 이상의 이메일 형식!</p>
             <div className="input-pw-container">
               <input 
                 type={isPwShown ? "text" : "password"}
