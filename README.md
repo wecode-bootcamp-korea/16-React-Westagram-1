@@ -11,7 +11,7 @@
 - 블로그: 
 
 #### 김승환(SeungHwan Kim)
-- Github: 
+- Github: https://github.com/1K3H
 - 블로그: 
 
 #### 김태형(TaeHyung Kim)
