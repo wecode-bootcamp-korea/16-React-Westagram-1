@@ -1,0 +1,70 @@
+{
+  "CommentData": [
+    {
+      "id": 1,
+      "userName": "wecode",
+      "content": "Welcome to world best coding bootcamp!"
+    },
+    {
+      "id": 2,
+      "userName": "hong",
+      "content": "Hi there."
+    },
+    {
+      "id": 3,
+      "userName": "code",
+      "content": "Hey."
+    }
+  ],
+
+  "RecommendData": [
+    {
+      "id": 1,
+      "userName": "recommend friend01",
+      "follower": "friend02"
+    },
+    {
+      "id": 2,
+      "userName": "recommend friend02",
+      "follower": "friend01"
+    },
+    {
+      "id": 3,
+      "userName": "recommend friend03",
+      "follower": "friend04"
+    },
+    {
+      "id": 4,
+      "userName": "recommend friend04",
+      "follower": "friend03"
+    }
+  ],
+
+  "StoryData": [
+    {
+      "id": 1,
+      "userName": "smile01"
+    },
+    {
+      "id": 2,
+      "userName": "smile02"
+    },
+    {
+      "id": 3,
+      "userName": "smile03"
+    },
+    {
+      "id": 4,
+      "userName": "smile04"
+    },
+    {
+      "id": 5,
+      "userName": "smile05"
+    }
+  ]
+
+
+
+}
+
+
