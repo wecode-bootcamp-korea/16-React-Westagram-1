@@ -4,7 +4,7 @@
 - 기간: '20.12.29(화) ~ '21.1.7(목)
 - 내용: Instagram 로그인 및 메인 페이지 React 클론. 로그인/회원가입 및 댓글추가 등 기능 구현.
 
-[![Video Label](http://img.youtube.com/vi/o299Sllsot8/0.jpg)](https://youtu.be/uLR1RNqJ1Mw?t=0s)
+[![Video Label](http://img.youtube.com/vi/o299Sllsot8/0.jpg)](https://youtu.be/o299Sllsot8)
 
 <br />
 
