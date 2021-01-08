@@ -54,6 +54,12 @@ class MainKiYeol extends Component {
 
   render() {
     const { commentList, commentValue, recommendList, storyList } = this.state;
+    const {
+      handleCommentInfo,
+      handleKeyCommentCreate,
+      handleCommentCreate,
+    } = this;
+
     return (
       <>
         {/* Main navbar */}
@@ -84,8 +90,8 @@ class MainKiYeol extends Component {
             <div className="westagram__group__box">
               {/* Westagram Story */}
               <ul className="westagram__story__box">
-                {storyList.map((list) => {
-                  return <StoryList key={list.id} userName={list.userName} />;
+                {storyList.map((story) => {
+                  return <StoryList key={story.id} userName={story.userName} />;
                 })}
               </ul>
               <article className="westagram__feed__box">
@@ -142,15 +148,14 @@ class MainKiYeol extends Component {
                     type="text"
                     placeholder="댓글 달기..."
                     value={commentValue}
-                    onChange={this.handleCommentInfo}
-                    onKeyPress={
-                      !commentValue ? null : this.handleKeyCommentCreate
-                    }
+                    onChange={handleCommentInfo}
+                    onKeyPress={!commentValue ? null : handleKeyCommentCreate}
                     className="feed__comment__input"
                   />
+
                   <button
                     className="feed__comment__Btn"
-                    onClick={this.handleCommentCreate}
+                    onClick={handleCommentCreate}
                     disabled={!commentValue}
                   >
                     게시

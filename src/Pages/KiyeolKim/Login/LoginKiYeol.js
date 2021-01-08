@@ -16,9 +16,7 @@ class LoginKiYeol extends Component {
   handleLoginInfo = (e) => {
     const { id, value } = e.target;
 
-    this.setState({ [id]: value }, () => {
-      console.log(`ID: ${this.state.id},  PW: ${this.state.pw}`);
-    });
+    this.setState({ [id]: value });
   };
 
   handleValidation = (e) => {
@@ -47,6 +45,7 @@ class LoginKiYeol extends Component {
     const isVaildBtn = this.state.id.includes("@") && this.state.pw.length >= 5;
 
     const { id, pw } = this.state;
+    const { handleLoginInfo, handleValidation } = this;
 
     const contentInfoArr = [
       "소개",
@@ -97,7 +96,7 @@ class LoginKiYeol extends Component {
                         className="input--text"
                         placeholder="전화번호, 사용자 이름 또는 이메일"
                         value={id}
-                        onChange={this.handleLoginInfo}
+                        onChange={handleLoginInfo}
                       />
                     </li>
                     <li>
@@ -107,7 +106,7 @@ class LoginKiYeol extends Component {
                         className="input--password"
                         placeholder="비밀번호"
                         value={pw}
-                        onChange={this.handleLoginInfo}
+                        onChange={handleLoginInfo}
                       />
                     </li>
                     <li>
@@ -115,7 +114,7 @@ class LoginKiYeol extends Component {
                         type="submit"
                         disabled={!isVaildBtn}
                         className={isVaildBtn ? "active" : ""}
-                        onClick={this.handleValidation}
+                        onClick={handleValidation}
                       >
                         <p>로그인</p>
                       </button>

@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 
 class RecommendList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
     const { userName, follower } = this.props;
     return (
