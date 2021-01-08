@@ -25,10 +25,8 @@
 - Javascript
 - React.js
 - React-Router
+
 <br />
-### 👨‍👨‍👦 협업 Tool
-- slack
-- git & github
 
 ### 👊 Team Mission
 - [x] 초기 세팅: 디렉토리 내, 개인별 작업폴더 생성후 해당 디렉토리에 폴더/파일 추가(public > images > 개인이름, src > pages > 개인이름)
