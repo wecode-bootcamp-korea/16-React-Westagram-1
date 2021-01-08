@@ -26,6 +26,11 @@
 - React.js
 - React-Router
 
+
+### 👨‍👨‍👦 협업 Tool
+- slack
+- git & github
+
 <br />
 
 ### 👊 Team Mission
