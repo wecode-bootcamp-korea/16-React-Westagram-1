@@ -7,8 +7,8 @@
 
 ### 👨‍❤️‍👨 팀원 소개
 #### 김기열(Kiyeol Kim)
-- Github: 
-- 블로그: 
+- Github: https://github.com/kyday
+- 블로그: https://velog.io/@devky
 
 #### 김승환(SeungHwan Kim)
 - Github: https://github.com/1K3H
@@ -26,6 +26,9 @@
 - React.js
 - React-Router
 <br />
+### 👨‍👨‍👦 협업 Tool
+- slack
+- git & github
 
 ### 👊 Team Mission
 - [x] 초기 세팅: 디렉토리 내, 개인별 작업폴더 생성후 해당 디렉토리에 폴더/파일 추가(public > images > 개인이름, src > pages > 개인이름)
