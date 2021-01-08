@@ -3,6 +3,9 @@
 ### 🤔 프로젝트 소개
 - 기간: '20.12.29(화) ~ '21.1.7(목)
 - 내용: Instagram 로그인 및 메인 페이지 React 클론. 로그인/회원가입 및 댓글추가 등 기능 구현.
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/6Az2cNU7gUw" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+
 <br />
 
 ### 👨‍❤️‍👨 팀원 소개
