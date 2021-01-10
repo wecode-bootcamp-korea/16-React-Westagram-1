@@ -5,6 +5,7 @@ import Footer from './Components/Footer'
 import { COMMENT, MEMBER_INFO, FOOTER_INFO } from './data'
 import './Main.scss';
 
+
 class Main extends React.Component {
   constructor() {
     super();
